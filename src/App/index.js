@@ -13,6 +13,7 @@ function App() {
   const [artist, setArtist] = useState({ artist: '' });
   const [song, setSong] = useState({ song: '' });
   const [lyrics, setLyrics] = useState({ lyrics: '' });
+  const [newLyrics, setNewLyrics] = useState(false);
 
   const handleInputChange = (e) => {
     setArtist((prevState) => ({
@@ -27,12 +28,18 @@ function App() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    getLyrics(artist.artist, song.song).then((resp) => setLyrics(resp));
+    if (newLyrics) {
+      setNewLyrics(false);
+    } else {
+      getLyrics(artist.artist, song.song).then((resp) => setLyrics(resp));
+      setNewLyrics(true);
+    }
   };
 
   return (
     <div className='App'>
-       <Form>
+       <Form
+       type="reset">
         <FormGroup>
           <Label for="">Song Title</Label>
           <Input
@@ -57,9 +64,9 @@ function App() {
         </FormGroup>
       </Form>
       <p>
-        {lyrics.lyrics}
+        {newLyrics ? '' : lyrics.lyrics}
       </p>
-      <Button type="submit" onClick={handleClick}>Get Lyrics</Button>
+      {newLyrics ? <Button type="submit" onClick={handleClick}>Search other lyrics</Button> : <Button type="submit" onClick={handleClick}>Get Lyrics</Button>}
     </div>
   );
 }
