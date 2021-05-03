@@ -42,7 +42,7 @@ function App() {
     <div className='App'>
        <Form>
         <FormGroup>
-          <Label for="">Song Title</Label>
+          <Label for="song">Song Title</Label>
           <Input
           type="text"
           name="song"
@@ -53,7 +53,7 @@ function App() {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="">Artist</Label>
+          <Label for="song">Artist</Label>
           <Input
             type="text"
             onChange={handleInputChange}
@@ -64,10 +64,10 @@ function App() {
           />
         </FormGroup>
       </Form>
-      <div>
+      <div className="lyrics-container">
         {!newLyrics && lyrics.lyrics}
       </div>
-      <Button type="submit" onClick={handleClick}>{newLyrics ? 'Get Lyrics' : 'Search New Lyrics'}</Button>
+      <Button color="dark" type="submit" onClick={handleClick}>{newLyrics ? 'Get Lyrics' : 'Search New Lyrics'}</Button>
     </div>
   );
 }
