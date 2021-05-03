@@ -34,6 +34,8 @@ function App() {
     } else {
       setNewLyrics(true);
     }
+    setArtist({ artist: '' });
+    setSong({ song: '' });
   };
 
   return (
